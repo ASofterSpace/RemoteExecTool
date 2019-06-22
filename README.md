@@ -34,12 +34,13 @@ Put into the file `config/config.json` something like:
 {
 	"name": "Moya-VII /Odyssey/",
 	"id": 1,
-	"sharePath": "Z:\remoteExecTool\",
+	"sharePath": "Z:/remoteExecTool/",
 	"commands": [
 		{
 			"shorthand": "beat",
 			"kind": "shellexec",
-			"path": "C:\Programs (x86)\Steam\steamapps\common\Beat Saber\Beat Saber.exe"
+			"path": "C:/Programs (x86)/Steam/steamapps/common/Beat Saber/",
+			"name": "Beat Saber.exe"
 		}
 	]
 }

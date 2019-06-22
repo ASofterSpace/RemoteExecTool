@@ -12,6 +12,8 @@ import com.asofterspace.toolbox.Utils;
 
 import java.util.List;
 
+import javax.swing.SwingUtilities;
+
 
 public class Main {
 
@@ -51,6 +53,8 @@ public class Main {
 		List<Record> commands = config.getAllContents().getArray("commands");
 
 		System.out.println("This is the RemoteExecTool with id " + id + " on computery device " + name + "! :)");
+
+		SwingUtilities.invokeLater(new GUI(id, name, sharePath, commands));
 	}
 
 }
