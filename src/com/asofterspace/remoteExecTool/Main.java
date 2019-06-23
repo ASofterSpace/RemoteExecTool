@@ -18,8 +18,8 @@ import javax.swing.SwingUtilities;
 public class Main {
 
 	public final static String PROGRAM_TITLE = "RemoteExecTool";
-	public final static String VERSION_NUMBER = "0.0.0.1(" + Utils.TOOLBOX_VERSION_NUMBER + ")";
-	public final static String VERSION_DATE = "22. June 2019 - 22. June 2019";
+	public final static String VERSION_NUMBER = "0.0.0.2(" + Utils.TOOLBOX_VERSION_NUMBER + ")";
+	public final static String VERSION_DATE = "22. June 2019 - 23. June 2019";
 
 	public static void main(String[] args) {
 
@@ -52,9 +52,18 @@ public class Main {
 
 		List<Record> commands = config.getAllContents().getArray("commands");
 
+		for (Record command : commands) {
+			System.out.println(command);
+			System.out.println(command.getString("path"));
+		}
+
+		// use actual discovery (by everyone when starting up writing to the share that they exist,
+		// and then all others reading from there and finding it) instead of configuration
+		List<Record> others = config.getAllContents().getArray("others");
+
 		System.out.println("This is the RemoteExecTool with id " + id + " on computery device " + name + "! :)");
 
-		SwingUtilities.invokeLater(new GUI(id, name, sharePath, commands));
+		SwingUtilities.invokeLater(new GUI(id, name, sharePath, commands, others));
 	}
 
 }

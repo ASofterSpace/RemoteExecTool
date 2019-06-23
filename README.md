@@ -34,13 +34,29 @@ Put into the file `config/config.json` something like:
 {
 	"name": "Moya-VII /Odyssey/",
 	"id": 1,
-	"sharePath": "Z:/remoteExecTool/",
+	"sharePath": "Z:/remoteExecTool/exchange/",
 	"commands": [
 		{
 			"shorthand": "beat",
 			"kind": "shellexec",
-			"path": "C:/Programs (x86)/Steam/steamapps/common/Beat Saber/",
-			"name": "Beat Saber.exe"
+			"name": "C:/Program Files (x86)/Steam/steamapps/common/Beat Saber/Beat Saber.exe",
+			"path": "C:/Program Files (x86)/Steam/steamapps/common/Beat Saber/"
+		},
+		{
+			"shorthand": "shutdown",
+			"kind": "shellexec",
+			"name": "shutdown -s"
+		},
+		{
+			"shorthand": "restart",
+			"kind": "shellexec",
+			"name": "shutdown -r"
+		}
+	],
+	"others": [
+		{
+			"name": "Livingroom PC",
+			"id": 2
 		}
 	]
 }

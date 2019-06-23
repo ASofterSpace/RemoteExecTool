@@ -74,8 +74,12 @@ public class GUI extends MainWindow {
 
 	private List<Record> commands;
 
+	private List<Record> others;
 
-	public GUI(Integer id, String name, String sharePath, List<Record> commands) {
+	private JLabel outputLabel;
+
+
+	public GUI(Integer id, String name, String sharePath, List<Record> commands, List<Record> others) {
 
 		this.id = id;
 
@@ -84,6 +88,8 @@ public class GUI extends MainWindow {
 		this.sharePath = sharePath;
 
 		this.commands = commands;
+
+		this.others = others;
 	}
 
 	@Override
@@ -122,6 +128,15 @@ public class GUI extends MainWindow {
 			}
 		});
 
+		/*
+		Target[] targets = ;
+		JComboBox targetSelector = new JComboBox(targets);
+		mainPanel.add(targetSelector, new Arrangement(0, 1, 1.0, 0.0))
+		*/
+
+		outputLabel = new JLabel();
+		mainPanel.add(outputLabel, new Arrangement(0, 2, 1.0, 0.0));
+
 		parent.add(mainPanel, BorderLayout.CENTER);
 
 		return mainPanel;
@@ -138,11 +153,22 @@ public class GUI extends MainWindow {
 
 	private void exec(Record command) {
 
-		System.out.println("Executing " + command.getString("name") + " command...");
+		output("Executing " + command.getString("name") + " command locally (on " + name + ")...");
 
 		if ("shellexec".equals(command.getString("kind"))) {
-			IoUtils.execute(command.getString("name"), new Directory(command.getString("path")));
+			if (command.getString("path") == null) {
+				IoUtils.execute(command.getString("name"));
+			} else {
+				IoUtils.execute(command.getString("name"), new Directory(command.getString("path")));
+			}
 		}
+	}
+
+	private void output(String text) {
+
+		outputLabel.setText(text);
+
+		System.out.println(text);
 	}
 
 }
